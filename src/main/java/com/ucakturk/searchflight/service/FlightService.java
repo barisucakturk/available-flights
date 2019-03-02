@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 import java.util.function.Predicate;
 
 @Service
-public class EconomyFlightService {
+public class FlightService {
 
 
     public Predicate<FlightResponseDto> createEconomyPredicates(EconomyFlightRequestDto economyFlightRequestDto) {
