@@ -1,8 +1,7 @@
 package com.ucakturk.searchflight.controller;
 
 
-import com.ucakturk.searchflight.entity.dto.BusinessFlightRequestDto;
-import com.ucakturk.searchflight.entity.dto.EconomyFlightRequestDto;
+import com.ucakturk.searchflight.entity.dto.FlightRequestDto;
 import com.ucakturk.searchflight.entity.dto.FlightResponseDto;
 import com.ucakturk.searchflight.mapper.ResponseDtoMapper;
 import com.ucakturk.searchflight.service.BusinessFlightClientService;
@@ -36,19 +35,19 @@ public class FlightController {
     }
 
     @GetMapping("/cheap")
-    public Flux<FlightResponseDto> getEconomyFlights(@ModelAttribute EconomyFlightRequestDto economyFlightRequestDto) {
+    public Flux<FlightResponseDto> getEconomyFlights(@ModelAttribute FlightRequestDto flightRequestDto) {
         return economyFlightClientService.getFlights()
                 .map(ResponseDtoMapper::economyFlightToResponseDto)
-                .filter(flightService.createEconomyPredicates(economyFlightRequestDto))
+                .filter(flightService.createPredicate(flightRequestDto))
                 .sort(Comparator.comparing(FlightResponseDto::getArrivalTime));
 
     }
 
     @GetMapping("/business")
-    public Flux<FlightResponseDto> getBusinessFlights(@ModelAttribute BusinessFlightRequestDto businessFlightRequestDto) {
+    public Flux<FlightResponseDto> getBusinessFlights(@ModelAttribute FlightRequestDto flightRequestDto) {
         return businessFlightClientService.getFlights()
                 .map(ResponseDtoMapper::businessFlightToResponseDto)
-                .filter(flightService.createBusinessPredicates(businessFlightRequestDto))
+                .filter(flightService.createPredicate(flightRequestDto))
                 .sort(Comparator.comparing(FlightResponseDto::getArrivalTime));
 
     }

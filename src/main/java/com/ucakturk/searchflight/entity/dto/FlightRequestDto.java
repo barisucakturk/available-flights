@@ -3,7 +3,7 @@ package com.ucakturk.searchflight.entity.dto;
 import lombok.Data;
 
 @Data
-public class EconomyFlightRequestDto {
+public class FlightRequestDto {
 
     private String arrival;
 
