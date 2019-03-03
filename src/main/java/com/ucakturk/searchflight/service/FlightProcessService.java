@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class FlightProcessService {
 
-    private final EconomyFlightClientService economyFlightClientService;
+    private EconomyFlightClientService economyFlightClientService;
 
-    private final FlightService flightService;
+    private FlightService flightService;
 
-    private final BusinessFlightClientService businessFlightClientService;
+    private BusinessFlightClientService businessFlightClientService;
 
 
     @Autowired
